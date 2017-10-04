@@ -1,0 +1,26 @@
+repos:
+- hooks:
+  - args: ['--ignore=E501,F401,E712,W503,F841']
+    id: flake8
+    language_version: python3
+  - {id: check-yaml, language_version: python3}
+  - {id: end-of-file-fixer, language_version: python3}
+  - {id: trailing-whitespace, language_version: python3}
+  repo: git://github.com/pre-commit/pre-commit-hooks
+  sha: v0.8.0
+- hooks:
+  - args: [--rcfile=.pylintrc]
+    id: pylint
+    language_version: python3
+  repo: git://github.com/pre-commit/mirrors-pylint
+  sha: v1.7.1
+- hooks:
+  - {id: reorder-python-imports, language_version: python3}
+  repo: git://github.com/asottile/reorder_python_imports
+  sha: v0.3.2
+- hooks:
+  - args: ['--ignore=D301,D203,D100,D104']
+    id: pep257
+    language_version: python3
+  repo: git://github.com/FalconSocial/pre-commit-mirrors-pep257
+  sha: f464d46624a959c6969ce6bcf2cd531cdeefb85a

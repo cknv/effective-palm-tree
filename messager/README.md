@@ -9,7 +9,7 @@ Try it out
 - Get python 3.6+
 - `$ pip install requirements.txt`, preferably in a virtualenv.
 - Generate sample data by running `$ maker.py`.
-- Run `$ reader.py` and then in another terminal session `$ writer.py`.
+- Run `$ docker-compose up` and then in other terminal sessions run `$ reader.py` and `$ writer.py`.
 
 Assumptions
 -----------
@@ -20,4 +20,4 @@ Assumptions
 Missing Bits
 ------------
 
-- Make the queue configurable.
+- Make the queue configurable, so it can use actual SQS, instead of a fake one.

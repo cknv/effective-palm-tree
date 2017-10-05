@@ -13,16 +13,16 @@ def spool(sequence, size=50):
     Yields:
         list: A chunk of the spooled data.
     """
-    current = []
+    spooled = []
     for each in sequence:
-        current.append(each)
+        spooled.append(each)
 
-        if len(current) >= size:
-            yield current
-            current = []
+        if len(spooled) >= size:
+            yield spooled
+            spooled = []
 
-    if current:
-        yield current
+    if spooled:
+        yield spooled
 
 
 def write_to_queue(queue, message_payloads):

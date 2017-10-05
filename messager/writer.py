@@ -51,14 +51,14 @@ def write_to_queue(queue, message_payloads):
         for each in result['Successful']
     }
 
-    to_retry = [
+    failed_messages = [
         each
         for i, each in enumerate(message_payloads)
         if i not in successfulls
     ]
 
-    if to_retry:
-        write_to_queue(queue, to_retry)
+    if failed_messages:
+        write_to_queue(queue, failed_messages)
 
 
 def main():

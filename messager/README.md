@@ -21,3 +21,4 @@ Missing Bits
 ------------
 
 - Make the queue configurable, so it can use actual SQS, instead of a fake one.
+- Actual logging rather than printing would not hurt.

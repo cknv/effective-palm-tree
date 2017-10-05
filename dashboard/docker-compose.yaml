@@ -1,0 +1,12 @@
+---
+version: '2'
+services:
+  dashboard_db:
+    image: postgres:9.6-alpine
+    environment:
+      POSTGRES_USER: dashboard
+      POSTGRES_DB: dashboard_db
+    ports:
+      - 5435:5432
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql

@@ -1,0 +1,8 @@
+---
+version: '2'
+services:
+
+  elasticmq:
+    image: lightspeedretail/fake-sqs
+    ports:
+      - 9324:9324

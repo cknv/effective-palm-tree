@@ -6,11 +6,15 @@ def main():
     queue = factory.create_queue()
 
     while True:
-        for message in queue.receive_messages(WaitTimeSeconds=5, MaxNumberOfMessages=25):
-            print(message)
-            print(message.delete())
+        messages = queue.receive_messages(WaitTimeSeconds=5, MaxNumberOfMessages=25)
 
-        print('waiting...')
+        if not messages:
+            print('waiting...')
+            continue
+
+        for message in messages:
+            print(message.body)
+            message.delete()
 
 
 if __name__ == '__main__':

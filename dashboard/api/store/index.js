@@ -13,7 +13,7 @@ async function readFromDb(sql) {
 }
 
 async function readUniqueDevices() {
-    var rows = await readFromDb("SELECT COUNT(DISTINCT deviceId) AS devices FROM calls;")
+    const rows = await readFromDb("SELECT COUNT(DISTINCT deviceId) AS devices FROM calls;")
     return rows
 }
 

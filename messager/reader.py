@@ -12,9 +12,12 @@ def main():
             print('waiting...')
             continue
 
-        for message in messages:
-            print(message.body)
-            message.delete()
+        with open('output_file', 'a') as fout:
+            for message in messages:
+                fout.write(message.body + '\n')
+                message.delete()
+
+        print(f'processed {len(messages)} messages')
 
 
 if __name__ == '__main__':

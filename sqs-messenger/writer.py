@@ -46,6 +46,8 @@ def write_to_queue(queue, message_payloads):
         ],
     )
 
+    # I have not actually gotten it to fail yet, so I assume that anything that
+    # did not succeed, probably failed.
     successfulls = {
         int(each['Id'])
         for each in result['Successful']

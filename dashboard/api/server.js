@@ -23,8 +23,8 @@ const wsServer = new WebSocketServer({
 
 connections = [];
 
-function pushLatestData(connection) {
-    pushLatestData2(connection)
+function pushLatestDataWrapper(connection) {
+    pushLatestData(connection)
         .then(res => console.log('pushed data.'))
         .catch(err => setImmediate(() => { throw err}))
 
@@ -37,7 +37,7 @@ function pushLatestData(connection) {
     // console.log('pushed data.');
 }
 
-async function pushLatestData2(connection) {
+async function pushLatestData(connection) {
     const devices = await store.readUniqueDevices()
     const totalCalls = await store.readTotalCalls()
 
@@ -61,5 +61,5 @@ wsServer.on('request', function(request) {
         console.log('Connection closed, Remaining connections: ' + connections.length);
     });
 
-    pushLatestData(connection);
+    pushLatestDataWrapper(connection);
 })

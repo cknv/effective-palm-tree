@@ -25,6 +25,42 @@ def spool(sequence, size=50):
         yield current
 
 
+def write_to_queue(queue, message_payloads):
+    """Write payloads to a queue.
+
+    Chains on itself, when messages fail to be written, which is a concern when
+    it comes to further scaling.
+
+    Args:
+        queue (sqs.Queue): The queue to write to.
+        message_payloads (list): The payloads to write.
+    """
+    result = queue.send_messages(
+        Entries=[
+            {
+                'Id': str(i),
+                'MessageBody': payload,
+
+            }
+            for i, payload in enumerate(message_payloads)
+        ],
+    )
+
+    successfulls = {
+        int(each['Id'])
+        for each in result['Successful']
+    }
+
+    to_retry = [
+        each
+        for i, each in enumerate(message_payloads)
+        if i not in successfulls
+    ]
+
+    if to_retry:
+        write_to_queue(queue, to_retry)
+
+
 def main():
     """Just a main function, everything starts here."""
     queue = factory.create_queue()
@@ -39,29 +75,8 @@ def main():
         chunks = spool(cleaned_lines)
 
         for chunk in chunks:
-            result = queue.send_messages(
-                Entries=[
-                    {
-                        'Id': str(i),
-                        'MessageBody': payload,
-
-                    }
-                    for i, payload in enumerate(chunk)
-                ]
-            )
-
-            successfulls = {
-                int(each['Id'])
-                for each in result['Successful']
-            }
-
-            to_retry = (
-                each
-                for i, each in enumerate(chunk)
-                if i not in successfulls
-            )
-
-            print(list(to_retry))
+            write_to_queue(queue, chunk)
+            print(f'wrote chunk of {len(chunk)} items')
 
 
 if __name__ == '__main__':

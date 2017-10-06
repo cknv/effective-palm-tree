@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <title>Corti - Live Stats</title>
     <script src="https://unpkg.com/vue"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.11.0/chartist.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.11.0/chartist.min.css">
     <link rel="stylesheet" type="text/css" href="sheet.css">
   </head>
   <body>
@@ -14,10 +16,10 @@
         <div class="single-stat">73<div>Days since start</div></div>
         <div class="single-stat">{{ totalCalls }}<div>calls since start</div></div>
         <div class="single-stat">141<div>CA calls detected since start</div></div>
-        <div class="single-stat">84 sec<div>Avg. time to detection</div></div>
+        <div class="single-stat">{{ avgDetectionTime }} sec<div>Avg. time to detection</div></div>
       </header>
-      <figure id="chart"></figure>
     </div>
+    <div class="ct-chart"></div>
   </body>
   <script src="./frontend.js"></script>
 </html>

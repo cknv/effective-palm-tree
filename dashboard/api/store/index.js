@@ -32,9 +32,15 @@ async function timeSeries() {
     return rows
 }
 
+async function cardiacArrestsDetected() {
+    const rows = await readFromDb("SELECT COUNT(*) AS cardiacarrests FROM calls WHERE predictionCardiacArrest;")
+    return parseInt(rows[0].cardiacarrests)
+}
+
 module.exports = {
     readUniqueDevices: readUniqueDevices,
     readTotalCalls: readTotalCalls,
     avgDetectionTime: avgDetectionTime,
     timeSeries: timeSeries,
+    cardiacArrestsDetected: cardiacArrestsDetected,
 }

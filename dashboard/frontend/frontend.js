@@ -4,6 +4,7 @@ var app = new Vue({
     message: 'Hello Vue!',
     devices: null,
     totalCalls: null,
+    cardiacArrestsDetected: null,
     avgDetectionTime: null,
   }
 })
@@ -32,6 +33,7 @@ connection.onmessage = function (message) {
   app.devices = parsed.uniqueDevices
   app.totalCalls = parsed.totalCalls
   app.avgDetectionTime = parsed.avgDetectionTime
+  app.cardiacArrestsDetected = parsed.cardiacArrestsDetected
 
   renderChart()
 }

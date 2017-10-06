@@ -15,7 +15,7 @@ app.post('/', (request, response) => {
         request.body.createdAt,
         request.body.predictionTime,
         request.body.cardiacArrest,
-    ).then(pushToAllConnections())
+    ).then(pushToAllConnections)
     .catch(err => setImmediate(() => { throw err }))
     response.send('received');
 });

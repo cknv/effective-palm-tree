@@ -43,19 +43,19 @@ function pushLatestDataWrapper(connection) {
 }
 
 async function pushLatestData(connection) {
-    const devices = await store.readUniqueDevices()
-    const totalCalls = await store.readTotalCalls()
-    const avgDetectionTime = await store.avgDetectionTime()
-    const timeSeries = await store.timeSeries()
-    const cardiacArrestsDetected = await store.cardiacArrestsDetected()
+    const devices = store.readUniqueDevices()
+    const totalCalls = store.readTotalCalls()
+    const avgDetectionTime = store.avgDetectionTime()
+    const timeSeries = store.timeSeries()
+    const cardiacArrestsDetected = store.cardiacArrestsDetected()
 
     connection.sendUTF(
         JSON.stringify({
-            uniqueDevices: devices,
-            totalCalls: totalCalls,
-            avgDetectionTime: avgDetectionTime,
-            timeSeries: timeSeries,
-            cardiacArrestsDetected: cardiacArrestsDetected,
+            uniqueDevices: await devices,
+            totalCalls: await totalCalls,
+            avgDetectionTime: await avgDetectionTime,
+            timeSeries: await timeSeries,
+            cardiacArrestsDetected: await cardiacArrestsDetected,
         })
     );
 }

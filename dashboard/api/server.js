@@ -48,6 +48,7 @@ async function pushLatestData(connection) {
     const avgDetectionTime = store.avgDetectionTime()
     const timeSeries = store.timeSeries()
     const cardiacArrestsDetected = store.cardiacArrestsDetected()
+    const daysSinceStart = store.daysSinceStart()
 
     connection.sendUTF(
         JSON.stringify({
@@ -56,6 +57,7 @@ async function pushLatestData(connection) {
             avgDetectionTime: await avgDetectionTime,
             timeSeries: await timeSeries,
             cardiacArrestsDetected: await cardiacArrestsDetected,
+            daysSinceStart: await daysSinceStart,
         })
     );
 }

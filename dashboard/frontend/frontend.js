@@ -6,6 +6,7 @@ var app = new Vue({
     totalCalls: null,
     cardiacArrestsDetected: null,
     avgDetectionTime: null,
+    daysSinceStart: null,
   }
 })
 
@@ -35,6 +36,7 @@ connection.onmessage = function (message) {
   app.totalCalls = parsed.totalCalls
   app.avgDetectionTime = parsed.avgDetectionTime
   app.cardiacArrestsDetected = parsed.cardiacArrestsDetected
+  app.daysSinceStart = Math.round(parsed.daysSinceStart * 100) / 100
 
   renderChart(parsed.timeSeries)
 }

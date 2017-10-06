@@ -44,6 +44,13 @@ async function cardiacArrestsDetected() {
     return parseInt(rows[0].cardiacarrests)
 }
 
+async function daysSinceStart() {
+    const sql = "SELECT EXTRACT(EPOCH FROM NOW()) - MIN(createdAt) AS seconds FROM calls;"
+    const rows = await readFromDb(sql)
+    const secondsAgo = parseFloat(rows[0].seconds)
+    return secondsAgo / (60 * 60 * 25)
+}
+
 async function appendCallEntry(deviceId, createdAt, predictionTime, cardiacArrest) {
     const sql = "INSERT INTO calls (deviceId, createdAt, predictionTime, predictionCardiacArrest) values ($1, $2, $3, $4);"
     await pool.query(sql, [deviceId, createdAt, predictionTime, cardiacArrest])
@@ -57,4 +64,5 @@ module.exports = {
     timeSeries: timeSeries,
     cardiacArrestsDetected: cardiacArrestsDetected,
     appendCallEntry: appendCallEntry,
+    daysSinceStart: daysSinceStart,
 }

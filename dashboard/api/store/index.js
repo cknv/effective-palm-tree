@@ -1,4 +1,5 @@
 const { Pool } = require('pg')
+const utils = require('../utils')
 
 const pool = new Pool({
     user: 'dashboard',
@@ -29,14 +30,15 @@ async function avgDetectionTime() {
 
 async function timeSeries() {
     const rows = await readFromDb("SELECT COUNT(*), date_trunc('day', to_timestamp(createdAt)) AS date FROM calls GROUP BY date ORDER BY date;")
-    return rows.map(
+    const timeSeries = rows.map(
         (each) => {
             return {
                 value: parseInt(each.count),
-                date: each.date.toISOString().slice(0, 10),
+                date: each.date,
             }
         }
     )
+    return utils.fillTimeSeries(timeSeries, 0)
 }
 
 async function cardiacArrestsDetected() {

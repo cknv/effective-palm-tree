@@ -6,9 +6,15 @@ body {
 header {
   background-color: white;
   display: flex;
+  margin-bottom: 20px;
 }
 
 div.single-stat {
   flex-grow: 1;
   text-align: center;
+}
+
+div#chart {
+  background-color: white;
+  padding-top: 20px;
 }

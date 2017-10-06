@@ -9,9 +9,7 @@ const app = express();
 
 app.post('/', (request, response) => {
     response.send('received');
-    for (var i = 0; i < connections.length; i++) {
-        pushLatestData(connections[i]);
-    }
+    pushToAllConnections()
 });
 const httpServer = http.createServer(app);
 
@@ -21,7 +19,13 @@ const wsServer = new WebSocketServer({
     httpServer: httpServer
 });
 
-connections = [];
+const connections = [];
+
+function pushToAllConnections() {
+    for (let connection of connections) {
+        pushLatestDataWrapper(connection)
+    }
+}
 
 function pushLatestDataWrapper(connection) {
     pushLatestData(connection)

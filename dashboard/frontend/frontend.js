@@ -11,12 +11,13 @@ var app = new Vue({
 
 var connection = new WebSocket('ws://localhost:1337');
 
-function renderChart() {
+function renderChart(timeSeries) {
+  const labels = timeSeries.map((each) => { return each.date })
+  const values = timeSeries.map((each) => { return parseInt(each.count) })
+
   const data = {
-    // labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
-    series: [
-      [5, 2, 4, 2, 0.5, 4, 5, 6, 2, 2, 2, 2, 2]
-    ],
+    labels: labels,
+    series: [values],
   }
   new Chartist.Bar('.ct-chart', data);
 }
@@ -35,5 +36,5 @@ connection.onmessage = function (message) {
   app.avgDetectionTime = parsed.avgDetectionTime
   app.cardiacArrestsDetected = parsed.cardiacArrestsDetected
 
-  renderChart()
+  renderChart(parsed.timeSeries)
 }

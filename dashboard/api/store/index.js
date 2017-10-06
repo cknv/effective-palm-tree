@@ -14,17 +14,17 @@ async function readFromDb(sql) {
 
 async function readUniqueDevices() {
     const rows = await readFromDb("SELECT COUNT(DISTINCT deviceId) AS devices FROM calls;")
-    return rows
+    return parseInt(rows[0].devices)
 }
 
 async function readTotalCalls() {
     const rows = await readFromDb("SELECT COUNT(*) AS calls FROM calls;")
-    return rows
+    return parseInt(rows[0].calls)
 }
 
 async function avgDetectionTime() {
     const rows = await readFromDb("SELECT AVG(predictionTime) as detectiontime FROM calls;")
-    return rows
+    return parseFloat(rows[0].detectiontime)
 }
 
 async function timeSeries() {

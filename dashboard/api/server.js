@@ -37,9 +37,9 @@ async function pushLatestData(connection) {
 
     connection.sendUTF(
         JSON.stringify({
-            uniqueDevices: parseInt(devices[0].devices),
-            totalCalls: parseInt(totalCalls[0].calls),
-            avgDetectionTime: parseInt(avgDetectionTime[0].detectiontime),
+            uniqueDevices: devices,
+            totalCalls: totalCalls,
+            avgDetectionTime: avgDetectionTime,
             timeSeries: timeSeries,
         })
     );

@@ -12,6 +12,7 @@ header {
 div.single-stat {
   flex-grow: 1;
   text-align: center;
+  font-family: Avenir, "sans-serif";
 }
 
 div#chart {

@@ -33,10 +33,8 @@ async function timeSeries() {
 }
 
 module.exports = {
-    readUniqueDevices: () => {
-        return readUniqueDevices()
-    },
-    readTotalCalls: () => {
-        return readTotalCalls()
-    }
+    readUniqueDevices: readUniqueDevices,
+    readTotalCalls: readTotalCalls,
+    avgDetectionTime: avgDetectionTime,
+    timeSeries: timeSeries,
 }

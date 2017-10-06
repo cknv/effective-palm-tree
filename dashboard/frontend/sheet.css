@@ -19,3 +19,7 @@ div#chart {
   background-color: white;
   padding-top: 20px;
 }
+
+div#chart .ct-series-a .ct-bar {
+  stroke: blue;
+}

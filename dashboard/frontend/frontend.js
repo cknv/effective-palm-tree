@@ -13,7 +13,7 @@ var connection = new WebSocket('ws://localhost:1337');
 
 function renderChart(timeSeries) {
   const labels = timeSeries.map((each) => { return each.date })
-  const values = timeSeries.map((each) => { return parseInt(each.count) })
+  const values = timeSeries.map((each) => { return each.value })
 
   const data = {
     labels: labels,

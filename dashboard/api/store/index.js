@@ -29,7 +29,14 @@ async function avgDetectionTime() {
 
 async function timeSeries() {
     const rows = await readFromDb("SELECT COUNT(*), date_trunc('day', to_timestamp(createdAt)) AS date FROM calls GROUP BY date;")
-    return rows
+    return rows.map(
+        (each) => {
+            return {
+                value: parseInt(each.count),
+                date: each.date.toISOString().slice(0, 10),
+            }
+        }
+    )
 }
 
 async function cardiacArrestsDetected() {

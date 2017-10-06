@@ -2,7 +2,6 @@ const WebSocketServer = require('websocket').server;
 const http = require('http');
 const express = require('express');
 const bodyParser = require('body-parser');
-const redis = require('redis');
 
 const store = require('./store')
 

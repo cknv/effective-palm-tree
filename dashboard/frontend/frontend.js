@@ -34,7 +34,7 @@ connection.onmessage = function (message) {
 
   app.devices = parsed.uniqueDevices
   app.totalCalls = parsed.totalCalls
-  app.avgDetectionTime = parsed.avgDetectionTime
+  app.avgDetectionTime = Math.round(parsed.avgDetectionTime * 100) / 100
   app.cardiacArrestsDetected = parsed.cardiacArrestsDetected
   app.daysSinceStart = Math.round(parsed.daysSinceStart * 100) / 100
 

@@ -1,16 +1,25 @@
 const WebSocketServer = require('websocket').server;
 const http = require('http');
 const express = require('express');
+const bodyParser = require('body-parser');
 const redis = require('redis');
 
 const store = require('./store')
 
 const app = express();
+app.use(bodyParser.json())
 
 app.post('/', (request, response) => {
+    store.appendCallEntry(
+        request.body.deviceId,
+        request.body.createdAt,
+        request.body.predictionTime,
+        request.body.cardiacArrest,
+    ).then(pushToAllConnections())
+    .catch(err => setImmediate(() => { throw err }))
     response.send('received');
-    pushToAllConnections()
 });
+
 const httpServer = http.createServer(app);
 
 httpServer.listen(1337, function() {});

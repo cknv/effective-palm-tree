@@ -37,10 +37,17 @@ async function cardiacArrestsDetected() {
     return parseInt(rows[0].cardiacarrests)
 }
 
+async function appendCallEntry(deviceId, createdAt, predictionTime, cardiacArrest) {
+    const sql = "INSERT INTO calls (deviceId, createdAt, predictionTime, predictionCardiacArrest) values ($1, $2, $3, $4);"
+    await pool.query(sql, [deviceId, createdAt, predictionTime, cardiacArrest])
+    console.log('inserted data.')
+}
+
 module.exports = {
     readUniqueDevices: readUniqueDevices,
     readTotalCalls: readTotalCalls,
     avgDetectionTime: avgDetectionTime,
     timeSeries: timeSeries,
     cardiacArrestsDetected: cardiacArrestsDetected,
+    appendCallEntry: appendCallEntry,
 }

@@ -22,7 +22,7 @@ app.post('/', (request, response) => {
 
 const httpServer = http.createServer(app);
 
-httpServer.listen(1337, function() {});
+httpServer.listen(8080, function() {});
 
 const wsServer = new WebSocketServer({
     httpServer: httpServer

@@ -12,11 +12,26 @@
     <div id="app">
       <header>
         <div class="single-stat"><img src="corti_logo.svg" alt="Corti Logo"></div>
-        <div class="single-stat">{{ devices }}<div>Device Deployed</div></div>
-        <div class="single-stat">73<div>Days since start</div></div>
-        <div class="single-stat">{{ totalCalls }}<div>calls since start</div></div>
-        <div class="single-stat">{{ cardiacArrestsDetected }}<div>CA calls detected since start</div></div>
-        <div class="single-stat">{{ avgDetectionTime }} sec<div>Avg. time to detection</div></div>
+        <div class="single-stat">
+          <div class="stat-value">{{ devices }}</div>
+          <div class="stat-description">Device Deployed</div>
+        </div>
+        <div class="single-stat">
+          <div class="stat-value">73</div>
+          <div class="stat-description">Days since start</div>
+        </div>
+        <div class="single-stat">
+          <div class="stat-value">{{ totalCalls }}</div>
+          <div class="stat-description">calls since start</div>
+        </div>
+        <div class="single-stat">
+          <div class="stat-value">{{ cardiacArrestsDetected }}</div>
+          <div class="stat-description">CA calls detected since start</div>
+        </div>
+        <div class="single-stat">
+          <div class="stat-value">{{ avgDetectionTime }} sec</div>
+          <div class="stat-description">Avg. time to detection</div>
+        </div>
       </header>
     </div>
     <div id="chart" class="ct-chart"></div>

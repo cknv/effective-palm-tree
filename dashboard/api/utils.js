@@ -1,3 +1,10 @@
+/**
+ * Fills a timeseries array of objects with a date and a value, with the filler
+ * if there are any gaps in the between the dates in the objects.
+ * @param {array} timeSeries - The timeseries to fill.
+ * @param {object} filler - What to fill the timeseries with.
+**/
+
 function fillTimeSeries(timeSeries, filler) {
     const quickMap = new Map(timeSeries.map((each) => [each.date.getTime(), each.value]))
 

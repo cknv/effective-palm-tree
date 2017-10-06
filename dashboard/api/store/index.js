@@ -22,6 +22,16 @@ async function readTotalCalls() {
     return rows
 }
 
+async function avgDetectionTime() {
+    const rows = await readFromDb("SELECT AVG(predictionTime) as detectiontime FROM calls;")
+    return rows
+}
+
+async function timeSeries() {
+    const rows = await readFromDb("SELECT COUNT(*), createdAt FROM calls GROUP BY createdAt;")
+    return rows
+}
+
 module.exports = {
     readUniqueDevices: () => {
         return readUniqueDevices()

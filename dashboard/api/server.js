@@ -27,24 +27,20 @@ function pushLatestDataWrapper(connection) {
     pushLatestData(connection)
         .then(res => console.log('pushed data.'))
         .catch(err => setImmediate(() => { throw err}))
-
-
-    // uniqueDevices
-    // totalCalls
-    // CAs detected
-    // avgDetectionTime
-    // timeSeries
-    // console.log('pushed data.');
 }
 
 async function pushLatestData(connection) {
     const devices = await store.readUniqueDevices()
     const totalCalls = await store.readTotalCalls()
+    const avgDetectionTime = await store.avgDetectionTime()
+    const timeSeries = await store.timeSeries();
 
     connection.sendUTF(
         JSON.stringify({
             uniqueDevices: parseInt(devices[0].devices),
             totalCalls: parseInt(totalCalls[0].calls),
+            avgDetectionTime: parseInt(avgDetectionTime[0].detectiontime),
+            timeSeries: timeSeries,
         })
     );
 }

@@ -59,11 +59,11 @@ async function appendCallEntry(deviceId, createdAt, predictionTime, cardiacArres
     console.log('inserted data.')
 }
 
-function registerCallsListener(handler) {
+function registerCallsListener(handlerFunction) {
     console.log('registering handler')
     pool.connect()
         .then(client => {
-            client.on('notification', handler)
+            client.on('notification', handlerFunction)
             const query = client.query('LISTEN watchers;')
         })
         .catch(error => {

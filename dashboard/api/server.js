@@ -29,21 +29,15 @@ const wsServer = new WebSocketServer({
 
 const connections = [];
 
-function pushToAllConnections() {
-    for (let connection of connections) {
-        pushLatestDataWrapper(connection)
-    }
-}
+store.registerCallsListener((msg) => pushToConnections(connections))
 
-store.registerCallsListener((msg) => pushToAllConnections())
-
-function pushLatestDataWrapper(connection) {
-    pushLatestData(connection)
+function pushToConnections(connections) {
+    pushLatestData(connections)
         .then(res => console.log('pushed data.'))
         .catch(err => setImmediate(() => { throw err}))
 }
 
-async function pushLatestData(connection) {
+async function pushLatestData(connections) {
     const devices = store.readUniqueDevices()
     const totalCalls = store.readTotalCalls()
     const avgDetectionTime = store.avgDetectionTime()
@@ -51,16 +45,20 @@ async function pushLatestData(connection) {
     const cardiacArrestsDetected = store.cardiacArrestsDetected()
     const daysSinceStart = store.daysSinceStart()
 
-    connection.sendUTF(
-        JSON.stringify({
-            uniqueDevices: await devices,
-            totalCalls: await totalCalls,
-            avgDetectionTime: await avgDetectionTime,
-            timeSeries: await timeSeries,
-            cardiacArrestsDetected: await cardiacArrestsDetected,
-            daysSinceStart: await daysSinceStart,
-        })
-    );
+    const payload = JSON.stringify({
+        uniqueDevices: await devices,
+        totalCalls: await totalCalls,
+        avgDetectionTime: await avgDetectionTime,
+        timeSeries: await timeSeries,
+        cardiacArrestsDetected: await cardiacArrestsDetected,
+        daysSinceStart: await daysSinceStart,
+    })
+
+    console.log('pushing to ' + connections.length + ' connections.')
+
+    for (let connection of connections) {
+        connection.sendUTF(payload)
+    }
 }
 
 wsServer.on('request', function(request) {
@@ -75,5 +73,5 @@ wsServer.on('request', function(request) {
         console.log('Connection closed, Remaining connections: ' + connections.length);
     });
 
-    pushLatestDataWrapper(connection);
+    pushToConnections([connection]);
 })

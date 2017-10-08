@@ -23,3 +23,4 @@ Recommened Changes
 - Before pushing data to the connected clients, the data should be loaded only once, and saved in a temporary store. Such as a redis, this could also mean that the trigger could be ommitted and replaced by a listener to a pubsub event in the same redis.
 - The frontend should not use CDN JS, but rather be built with a Node build tool.
 - The frontend should take more advantage of Vue componets.
+- The frontend should be better at reconnecting to the API in the event that something went wrong.

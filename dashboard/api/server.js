@@ -14,7 +14,7 @@ app.post('/', (request, response) => {
         request.body.createdAt,
         request.body.predictionTime,
         request.body.cardiacArrest,
-    ).then(pushToAllConnections)
+    ).then(console.log('not pushing'))
     .catch(err => setImmediate(() => { throw err }))
     response.send('received');
 });
@@ -34,6 +34,8 @@ function pushToAllConnections() {
         pushLatestDataWrapper(connection)
     }
 }
+
+store.registerCallsListener((msg) => pushToAllConnections())
 
 function pushLatestDataWrapper(connection) {
     pushLatestData(connection)

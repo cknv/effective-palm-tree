@@ -59,6 +59,19 @@ async function appendCallEntry(deviceId, createdAt, predictionTime, cardiacArres
     console.log('inserted data.')
 }
 
+function registerCallsListener(handler) {
+    console.log('registering handler')
+    pool.connect()
+        .then(client => {
+            client.on('notification', handler)
+            const query = client.query('LISTEN watchers;')
+        })
+        .catch(error => {
+            client.release()
+            console.log(err.stack)
+        })
+}
+
 module.exports = {
     readUniqueDevices: readUniqueDevices,
     readTotalCalls: readTotalCalls,
@@ -67,4 +80,5 @@ module.exports = {
     cardiacArrestsDetected: cardiacArrestsDetected,
     appendCallEntry: appendCallEntry,
     daysSinceStart: daysSinceStart,
+    registerCallsListener: registerCallsListener,
 }

@@ -18,6 +18,14 @@ div.single-stat {
   font-family: Avenir, "sans-serif";
 }
 
+div.stat-description {
+  font-size: 0.75rem;
+}
+
+div.stat-value {
+  font-weight: bold;
+}
+
 div#chart {
   padding-top: 20px;
 }

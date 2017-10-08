@@ -34,7 +34,11 @@ function fillTimeSeries(timeSeries, filler) {
         }
     )
 
-    return filledTimeSeries.sort((each, other) => {return each.date - other.date})
+    return filledTimeSeries.sort(
+        (each, other) => {
+            return each.date - other.date
+        }
+    )
 }
 
 function* dateMaker(since, until, daysStep = 1) {

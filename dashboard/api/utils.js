@@ -33,7 +33,7 @@ function fillTimeSeries(timeSeries, filler) {
 }
 
 function* dateMaker(since, until, daysStep = 1) {
-    let current = new Date(since)
+    const current = new Date(since)
     while (current <= until) {
         yield current
         current.setDate(current.getDate() + daysStep)

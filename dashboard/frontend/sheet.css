@@ -31,7 +31,7 @@ div#chart {
 }
 
 div#chart .ct-series-a .ct-bar {
-  stroke: blue;
+  stroke: #26369B;
 }
 
 div#chart-background {

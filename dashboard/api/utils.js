@@ -11,6 +11,9 @@ function fillTimeSeries(timeSeries, filler) {
     const earliestDate = timeSeries[0].date
     const latestDate = timeSeries[timeSeries.length - 1].date
     for (let current = new Date(earliestDate); current <= latestDate; current.setDate(current.getDate() + 1)) {
+        // Using the dates as keys resulted in duplicates keys, using the epoch
+        // turned out to be more reliable, even though it requires conversion
+        // back to dates afterwards.
         const currentEpoch = current.getTime()
 
         if (quickMap.has(currentEpoch)) {

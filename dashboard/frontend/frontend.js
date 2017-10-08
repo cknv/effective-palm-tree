@@ -13,12 +13,9 @@ var app = new Vue({
 var connection = new WebSocket('ws://localhost:8080');
 
 function renderChart(timeSeries) {
-  const labels = timeSeries.map((each) => { return each.date.slice(0, 10) })
-  const values = timeSeries.map((each) => { return each.value })
-
   const data = {
-    labels: labels,
-    series: [values],
+    labels: timeSeries.map((each) => each.date.slice(0, 10)),
+    series: [timeSeries.map((each) => each.value)],
   }
 
   const options = {

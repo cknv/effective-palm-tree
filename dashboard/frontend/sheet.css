@@ -6,7 +6,10 @@ body {
 header {
   background-color: white;
   display: flex;
+  align-items: center;
   margin-bottom: 20px;
+  box-shadow: 0px 0px 20px #c4c4c4;
+  padding: 10px;
 }
 
 div.single-stat {
@@ -16,10 +19,16 @@ div.single-stat {
 }
 
 div#chart {
-  background-color: white;
   padding-top: 20px;
 }
 
 div#chart .ct-series-a .ct-bar {
   stroke: blue;
+}
+
+div#chart-background {
+  background-color: white;
+  box-shadow: 0px 0px 20px #c4c4c4;
+  margin-top: 20px;
+  padding: 20px;
 }

@@ -8,7 +8,7 @@ const store = require('./store')
 const app = express();
 app.use(bodyParser.json())
 
-app.post('/', (request, response) => {
+app.post('/calls', (request, response) => {
     // According to the spec this endpoint is *technically* suppose to be
     // another service, so consider this either irrelevant or an improvement
     // on the design :)

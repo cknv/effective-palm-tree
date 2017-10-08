@@ -23,7 +23,7 @@ def ca_prediction():
 
 def main():
     device_id = str(uuid4())
-    url = 'http://localhost:8080'
+    url = 'http://localhost:8080/calls'
 
     for __ in range(2250):
         resp = requests.post(

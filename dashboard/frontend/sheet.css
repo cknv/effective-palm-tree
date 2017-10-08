@@ -32,6 +32,7 @@ div#chart {
 
 div#chart .ct-series-a .ct-bar {
   stroke: #26369B;
+  stroke-width: 15px;
 }
 
 div#chart-background {

@@ -42,3 +42,12 @@ div#chart-background {
   margin-top: 20px;
   padding: 20px;
 }
+
+.ct-label.ct-label.ct-horizontal {
+  position: fixed;
+  justify-content: flex-end;
+  text-align: right;
+  transform-origin: 170% 0;
+  transform: translate(-100%) rotate(-75deg);
+  white-space: nowrap;
+}

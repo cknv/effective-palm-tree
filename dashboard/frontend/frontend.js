@@ -25,6 +25,9 @@ function renderChart(timeSeries) {
     axisY: {
       onlyInteger: true,
     },
+    chartPadding: {
+      bottom: 30,
+    },
   }
   new Chartist.Bar('.ct-chart', data, options);
 }

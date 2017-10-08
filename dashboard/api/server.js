@@ -32,7 +32,7 @@ const connections = [];
 store.registerCallsListener((msg) => pushToConnections(connections))
 
 function pushToConnections(connections) {
-    if (connections.length == 0) {
+    if (connections.length === 0) {
         console.log('no connections, skipping push')
         return
     }

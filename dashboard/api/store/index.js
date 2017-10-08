@@ -68,7 +68,7 @@ function registerCallsListener(handler) {
         })
         .catch(error => {
             client.release()
-            console.log(err.stack)
+            console.log(error.stack)
         })
 }
 

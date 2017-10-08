@@ -10,7 +10,7 @@ function fillTimeSeries(timeSeries, filler) {
 
     const earliestDate = timeSeries[0].date
     const latestDate = timeSeries[timeSeries.length - 1].date
-    for (let current = new Date(earliestDate); current <= latestDate; current.setDate(current.getDate() + 1)) {
+    for (let current of dateMaker(earliestDate, latestDate)) {
         // Using the dates as keys resulted in duplicates keys, using the epoch
         // turned out to be more reliable, even though it requires conversion
         // back to dates afterwards.
@@ -30,6 +30,14 @@ function fillTimeSeries(timeSeries, filler) {
     })
 
     return filledTimeSeries.sort((each, other) => {return each.date - other.date})
+}
+
+function* dateMaker(since, until, daysStep = 1) {
+    let current = new Date(since)
+    while (current <= until) {
+        yield current
+        current.setDate(current.getDate() + daysStep)
+    }
 }
 
 module.exports = {

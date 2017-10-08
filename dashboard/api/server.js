@@ -9,6 +9,9 @@ const app = express();
 app.use(bodyParser.json())
 
 app.post('/', (request, response) => {
+    // According to the spec this endpoint is *technically* suppose to be
+    // another service, so consider this either irrelevant or an improvement
+    // on the design :)
     store.appendCallEntry(
         request.body.deviceId,
         request.body.createdAt,

@@ -2,9 +2,13 @@
   "name": "dashboard",
   "version": "0.0.1",
   "dependencies": {
+    "ava": "^0.22.0",
     "body-parser": "1.18.2",
     "express": "4.16.1",
     "pg": "7.3.0",
     "websocket": "1.0.24"
+  },
+  "scripts": {
+    "test": "node_modules/ava/cli.js"
   }
 }

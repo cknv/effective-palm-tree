@@ -13,7 +13,7 @@ Trying it out
 - Run `$ docker-compose up`.
 - Run the API via `$ node api/server.js`.
 - Open the `frontend/index.html` page in your preferred webbrowser.
-- Optionally run `$ python feeder.py` to put data in the database.
+- Optionally run `$ python feeder.py` to put data in the database and watch the dashboard update.
 
 Recommened Changes
 ------------------

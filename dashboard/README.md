@@ -12,7 +12,7 @@ Trying it out
 - Run `$ npm install`.
 - Run `$ docker-compose up`.
 - Run the API via `$ node api/server.js`.
-- Open the `index.html` page in your preferred webbrowser.
+- Open the `frontend/index.html` page in your preferred webbrowser.
 
 Recommened Changes
 ------------------

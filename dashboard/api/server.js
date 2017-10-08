@@ -32,6 +32,11 @@ const connections = [];
 store.registerCallsListener((msg) => pushToConnections(connections))
 
 function pushToConnections(connections) {
+    if (connections.length == 0) {
+        console.log('no connections, skipping push')
+        return
+    }
+
     pushLatestData(connections)
         .then(res => console.log('pushed data.'))
         .catch(err => setImmediate(() => { throw err}))

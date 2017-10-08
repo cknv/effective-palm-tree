@@ -20,7 +20,13 @@ function renderChart(timeSeries) {
     labels: labels,
     series: [values],
   }
-  new Chartist.Bar('.ct-chart', data);
+
+  const options = {
+    axisY: {
+      onlyInteger: true,
+    },
+  }
+  new Chartist.Bar('.ct-chart', data, options);
 }
 
 connection.onmessage = function (message) {

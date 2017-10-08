@@ -1,32 +1,31 @@
 import random
 from datetime import datetime
 from datetime import timedelta
-from time import sleep
 from uuid import uuid4
 
 import requests
 
 
 def prediction_time():
-    return random.randint(10, 120)
+    return random.randint(30, 120)
 
 
 def created_time():
     now = datetime.utcnow()
     interval = timedelta(hours=1)
-    a_little_while_ago = now - interval * random.randint(0, 100)
+    a_little_while_ago = now - interval * random.randint(0, 24 * 60)
     return int(a_little_while_ago.timestamp())
 
 
 def ca_prediction():
-    return random.random() > 0.85
+    return random.random() > 0.95
 
 
 def main():
     device_id = str(uuid4())
     url = 'http://localhost:8080'
 
-    while True:
+    for __ in range(2250):
         resp = requests.post(
             url,
             json={
@@ -37,7 +36,6 @@ def main():
             },
         )
         print(resp)
-        sleep(0.2)
 
 
 if __name__ == '__main__':

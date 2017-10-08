@@ -18,7 +18,7 @@ def created_time():
 
 
 def ca_prediction():
-    return random.random() > 0.95
+    return random.random() > 0.94
 
 
 def main():
